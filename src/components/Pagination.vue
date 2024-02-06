@@ -1,8 +1,8 @@
 <template>
     <b-container class="mt-5">
         <b-table id="my-table" :items="vehiculos" :per-page="perPage" :current-page="currentPage" :fields="fields"
-            :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" label-sort-asc="" label-sort-desc="" small
-            class="table table-bordered table-striped">
+            :sort-by.sync="sortBy" :sort-desc.sync="sortDesc" label-sort-asc="" label-sort-desc="" small striped bordered
+            responsive>
             <template #cell(marca)="data">
                 <strong>{{ data.value }}</strong>
             </template>
@@ -13,12 +13,10 @@
         <div class="overflow-auto">
             <b-pagination v-model="currentPage" :total-rows="vehiculos.length" :per-page="perPage"
                 aria-controls="my-table"></b-pagination>
-
             <p class="mt-3">Current Page: {{ currentPage }}</p>
         </div>
     </b-container>
 </template>
-
   
 <script>
 import vehiculoService from "../services/Vehiculo";
@@ -48,7 +46,8 @@ export default {
                 const data = await vehiculoService.getVehiculos(
                     parseInt(this.currentPage),
                     parseInt(this.perPage),
-                    this.sortBy
+                    this.sortBy,
+                    this.sortDesc
                 );
                 this.vehiculos = data.content;
             } catch (error) {
@@ -58,3 +57,4 @@ export default {
     },
 };
 </script>
+  
