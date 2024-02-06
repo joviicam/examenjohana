@@ -80,4 +80,9 @@ export default {
     padding: 0 1rem;
     transition: margin-left 0.5s;
 }
+
+
+.breadcrumb-item.active {
+    color: #6c1f1f;
+}
 </style>
